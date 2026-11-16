@@ -1,0 +1,48 @@
+
+import java.io.*;
+
+public class Q8 {
+    public static void main(String[] args) {
+        int vowels = 0, consonants = 0;
+        int digits = 0, spaces = 0;
+
+        try {
+            FileReader fr = new FileReader("input.txt");
+
+            int ch;
+
+            while ((ch = fr.read()) != -1) {
+
+                char c = (char) ch;
+
+                if (Character.isLetter(c)) {
+                    c = Character.toLowerCase(c);
+
+                    if (c == 'a' || c == 'e' ||
+                        c == 'i' || c == 'o' || c == 'u') {
+                        vowels++;
+                    }
+                    else {
+                        consonants++;
+                    }
+                }
+                else if (Character.isDigit(c)) {
+                    digits++;
+                }
+                else if (c == ' ') {
+                    spaces++;
+                }
+            }
+
+            fr.close();
+
+            System.out.println("Vowels: " + vowels);
+            System.out.println("Consonants: " + consonants);
+            System.out.println("Digits: " + digits);
+            System.out.println("Spaces: " + spaces);
+        }
+        catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
