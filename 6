@@ -1,0 +1,48 @@
+
+import java.io.*;
+import java.util.Scanner;
+
+public class Q6 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int count = 0;
+
+        try {
+            BufferedReader br = new BufferedReader(
+                new FileReader("notes.txt"));
+
+            System.out.print("Enter word to search: ");
+            String search = sc.nextLine();
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] words = line.split("\\s+");
+
+                for (String word : words) {
+                    word = word.replaceAll(
+                        "^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$", "");
+
+                    if (word.equalsIgnoreCase(search)) {
+                        count++;
+                    }
+                }
+            }
+
+            br.close();
+
+            if (count > 0) {
+                System.out.println("Word found!");
+                System.out.println("Occurrences: " + count);
+            }
+            else {
+                System.out.println("Word not found.");
+            }
+        }
+        catch (IOException e) {
+            System.out.println("File not found or error reading file.");
+        }
+
+        sc.close();
+    }
+}
