@@ -1,0 +1,27 @@
+
+import java.io.*;
+
+public class Q2 {
+    public static void main(String[] args) {
+        try {
+            FileReader fr = new FileReader("student.txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            String line;
+
+            System.out.println("Student Details:");
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            br.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File does not exist.");
+        }
+        catch (IOException e) {
+            System.out.println("Error reading file.");
+        }
+    }
+}
